@@ -48,7 +48,12 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
-  return [a+b+c , a*b*c ,   a + " and " + b  + " and " + c + ' sum to ' + (a+b+c) + '.' , 'The product of ' + a + " and " + b  + " and " + c + ' is ' + (a*b*c) + '.' ]
+  let addition = sum(a,b)[0];
+  addition = sum(addition,c)[0];
+  let multiplication = multiply(a,b)[0];
+  multiplication = multiply(multiplication,c)[0];
+
+  return [addition, multiplication,   a + " and " + b  + " and " + c + ' sum to ' + addition + '.' , 'The product of ' + a + " and " + b  + " and " + c + ' is ' + multiplication + '.' ]
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
@@ -70,10 +75,9 @@ Test this function by hand in the console to get it working, and when you think 
 let testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
-  let sum = 0;
-  for (let i = 0; i < sumArr.length; i++)
-   sum += sumArr[i]
-   return [sum, testArray + " was passed in as an array of numbers, and " + sum + " is their sum."]
+  let addition = sum(sumArr[0], sumArr[1])[0];
+  addition = sum(addition, sumArr[2])[0];
+  return [addition, sumArr + " was passed in as an array of numbers, and " + addition + " is their sum."]
 }
 
 // Here is the test for sumArray(); uncomment it to run it
@@ -94,10 +98,9 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-  let product = 1;
-  for (let i = 0; i < multArr.length; i++)
-   product *= multArr[i]
-   return [product, "The numbers "+ testArray + " have a product of " + product + "."]
+  let product = multiply(multArr[0], multArr[1])[0];
+  product = multiply(product, multArr[2])[0]; 
+  return [product, "The numbers "+ multArr + " have a product of " + product + "."]
 }
 // Here is the test for multiplyArray(); uncomment it to run it
 testMultiplyArray(testArray);
@@ -125,9 +128,10 @@ let testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
   let dynamicProduct = 1;
-  for (let i = 0; i < dynamicArray.length; i++)
-   dynamicProduct *= dynamicArray[i]
-   return [dynamicProduct, "The numbers "+ testDynamicArray + " have a product of " + dynamicProduct + '.']
+  for (let i = 0; i < dynamicArray.length; i++) {
+    dynamicProduct = multiply(dynamicProduct, dynamicArray[i])[0];
+  }
+  return [dynamicProduct, "The numbers "+ dynamicArray + " have a product of " + dynamicProduct + '.']
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
